@@ -24,7 +24,7 @@ func buildSuggestions() Completer {
 		},
 		DestructAfterOpeningSuggestions: []prompt.Suggest{
 			{Text: "yes", Description: "your note will be destroyed from our server on the first opening"},
-			{Text: "no", Description: "we will preserve your note untill it expires"},
+			{Text: "no", Description: "we will preserve your note until it expires"},
 		},
 	}
 }
