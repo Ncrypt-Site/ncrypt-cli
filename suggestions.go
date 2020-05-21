@@ -34,7 +34,7 @@ func (c *Completer) noSuggestion(d prompt.Document) []prompt.Suggest {
 }
 
 func (c *Completer) selfDestructSuggestions(d prompt.Document) []prompt.Suggest {
-	return prompt.FilterHasPrefix(c.NoteSelfDestructSuggestion, d.GetWordBeforeCursor(), true)
+	return prompt.FilterContains(c.NoteSelfDestructSuggestion, d.GetWordBeforeCursor(), true)
 }
 
 func (c *Completer) destructAfterOpeningSuggestions(d prompt.Document) []prompt.Suggest {
