@@ -1,4 +1,4 @@
-package main
+package helpers
 
 import "errors"
 
@@ -14,14 +14,14 @@ var acceptableSelfDestructValues = map[string]int{
 	"1 month":  0,
 }
 
-func convertSelfDestructToInt(i string) (int, error) {
+func ConvertSelfDestructToInt(i string) (int, error) {
 	if v, ok := acceptableSelfDestructValues[i]; ok {
 		return v, nil
 	}
 	return 0, errors.New("invalid input")
 }
 
-func convertDestructAfterOpeningToBool(i string) (bool, error) {
+func ConvertDestructAfterOpeningToBool(i string) (bool, error) {
 	if i == "yes" {
 		return true, nil
 	} else if i == "no" {
