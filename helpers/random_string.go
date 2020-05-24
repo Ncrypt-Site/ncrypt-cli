@@ -2,33 +2,31 @@ package helpers
 
 import (
 	"math/rand"
-	"strings"
-	"time"
 )
 
-const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-const (
-	letterIndexBits = 6                      // 6 bits to represent a letter index
-	letterIndexMask = 1<<letterIndexBits - 1 // All 1-bits, as many as letterIndexBits
-	letterIndexMax  = 63 / letterIndexBits   // # of letter indices fitting in 63 bits
-)
+const CharSets = "123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-func GenerateRandomPassword(n int) string {
-	src := rand.NewSource(time.Now().UnixNano())
-	sb := strings.Builder{}
-	sb.Grow(n)
-
-	for i, cache, remain := n-1, src.Int63(), letterIndexMax; i >= 0; {
-		if remain == 0 {
-			cache, remain = src.Int63(), letterIndexMax
-		}
-		if idx := int(cache & letterIndexMask); idx < len(letters) {
-			sb.WriteByte(letters[idx])
-			i--
-		}
-		cache >>= letterIndexBits
-		remain--
+func GenerateRandomBytes(n int) ([]byte, error) {
+	b := make([]byte, n)
+	_, err := rand.Read(b)
+	if err != nil {
+		return nil, err
 	}
 
-	return sb.String()
+	return b, nil
+}
+
+func GenerateRandomString(n int) (string, error) {
+	l := len(CharSets)
+
+	b, err := GenerateRandomBytes(n)
+	if err != nil {
+		return "", nil
+	}
+	s := make([]byte, n)
+	for i, v := range b {
+		s[i] = CharSets[v%uint8(l)]
+	}
+
+	return string(s), nil
 }
