@@ -3,26 +3,17 @@ package cypher
 import (
 	"crypto/aes"
 	"crypto/cipher"
-	"crypto/rand"
-	"io"
 )
 
-func EncryptNote(note []byte, key []byte) ([]byte, error) {
-	c, err := aes.NewCipher(key)
+func EncryptNote(note, key, iv []byte) ([]byte, error) {
+	block, err := aes.NewCipher(key)
 	if err != nil {
 		return nil, err
 	}
 
-	gcm, err := cipher.NewGCM(c)
-	if err != nil {
-		return nil, err
-	}
+	encryptedNote := make([]byte, len(note))
+	stream := cipher.NewCTR(block, iv)
+	stream.XORKeyStream(encryptedNote, note)
 
-	nonce := make([]byte, gcm.NonceSize())
-	if _, err = io.ReadFull(rand.Reader, nonce); err != nil {
-		return nil, err
-	}
-
-	encryptedText := gcm.Seal(nonce, nonce, note, nil)
-	return encryptedText, nil
+	return encryptedNote, nil
 }
