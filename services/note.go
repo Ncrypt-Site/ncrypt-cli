@@ -32,7 +32,8 @@ func CreateNote(note []byte) (models.EncryptedNote, error) {
 		Note: encryptedNoteB64 + "," + noteSha2 + "," + base64.StdEncoding.EncodeToString([]byte(iv)),
 		Key:  base64.StdEncoding.EncodeToString([]byte(key)),
 	}
-	e.Signature = CalculateSHA256([]byte(e.Note))
+	encryptedNoteSignature := CalculateSHA256([]byte(e.Note))
+	e.Note += "," + encryptedNoteSignature
 
 	return e, nil
 }
