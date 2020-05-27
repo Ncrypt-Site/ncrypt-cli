@@ -3,15 +3,15 @@ package helpers
 import "errors"
 
 var acceptableSelfDestructValues = map[string]int{
-	"1 hour":   1,
-	"3 hours":  3,
-	"6 hours":  6,
-	"12 hours": 12,
-	"1 day":    24,
-	"2 days":   48,
-	"3 days":   72,
-	"7 days":   168,
-	"1 month":  0,
+	"1h":  1,
+	"3h":  3,
+	"6h":  6,
+	"12h": 12,
+	"1d":  24,
+	"2d":  48,
+	"3d":  72,
+	"7d":  168,
+	"1m":  0,
 }
 
 func ConvertSelfDestructToInt(i string) (int, error) {
