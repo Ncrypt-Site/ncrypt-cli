@@ -3,7 +3,7 @@ package helpers
 import "testing"
 
 func TestConvertDestructAfterOpeningToBool(t *testing.T) {
-	_, err := ConvertSelfDestructToInt("1 hour")
+	_, err := ConvertSelfDestructToInt("1h")
 	if err != nil {
 		t.Fatal(err)
 	}
