@@ -6,7 +6,7 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     name: Tests
-    container: golang:1.14-alpine3
+    container: golang:1.14-alpine3.11
     steps:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v2
