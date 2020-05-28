@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: apk add make gcc
+        run: apk add make
 
       - name: Get dependencies
         run: go mod download
