@@ -9,7 +9,7 @@ import (
 	"ncrypt-cli/models"
 )
 
-func CreateNote(note []byte) (models.EncryptedNote, error) {
+func createSecureNote(note []byte) (models.EncryptedNote, error) {
 	if len(note) == 0 {
 		return models.EncryptedNote{}, errors.New("note can not be empty")
 	}
