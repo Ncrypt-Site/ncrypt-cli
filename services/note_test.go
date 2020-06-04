@@ -28,12 +28,12 @@ func TestGenerateSHA256(t *testing.T) {
 func TestCreateNote(t *testing.T) {
 	message := []byte("Throughout human history, we have been dependent on machines to survive." +
 		" Fate, it seems, is not without a sense of irony.")
-	_, err := CreateNote(message)
+	_, err := createSecureNote(message)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	_, err = CreateNote([]byte(""))
+	_, err = createSecureNote([]byte(""))
 	if err == nil {
 		t.Fail()
 	}
