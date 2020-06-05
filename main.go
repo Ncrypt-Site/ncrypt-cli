@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"github.com/c-bata/go-prompt"
 	"github.com/gookit/color"
 	"ncrypt-cli/helpers"
@@ -36,31 +35,17 @@ func main() {
 		os.Exit(2)
 	}
 
-	encryptedNote, err := services.CreateNote([]byte(note))
-	if err != nil {
-		color.Red.Println("an error occurred, please try again")
-		os.Exit(2)
-	}
-
-	model := models.SecureMessageRequest{
-		Note:                 encryptedNote.Note,
-		SelfDestruct:         selfDestruct,
-		DestructAfterOpening: destructAfterOpening,
-	}
-
 	h := services.HttpService{
 		Client: &http.Client{},
 		Url:    "https://api.ncrypt.site/api/v1/note",
 	}
 
-	resp, err := h.SendRequest(model)
-	if err != nil {
-		color.Red.Println(err)
-		os.Exit(2)
-	}
+	r, key, err := services.CreateNote(h, models.Note{
+		Note:                 []byte(note),
+		SelfDestruct:         selfDestruct,
+		DestructAfterOpening: destructAfterOpening,
+	})
 
-	r := models.NoteCreatedResponse{}
-	err = json.Unmarshal(resp, &r)
 	if err != nil {
 		color.Red.Println(err)
 		os.Exit(2)
@@ -69,5 +54,5 @@ func main() {
 	color.Green.Println("Note has been created, the following url is now holds your secure note:")
 	color.FgLightRed.Println(r.URL)
 	color.Green.Println("Whoever receives the note will need the following key to open it:")
-	color.FgLightRed.Println(encryptedNote.Key)
+	color.FgLightRed.Println(key)
 }
