@@ -25,7 +25,7 @@ func TestGenerateSHA256(t *testing.T) {
 }
 
 // todo: this test needs improvement.
-func TestCreateNote(t *testing.T) {
+func TestCreateSecureNote(t *testing.T) {
 	message := []byte("Throughout human history, we have been dependent on machines to survive." +
 		" Fate, it seems, is not without a sense of irony.")
 	_, err := createSecureNote(message)
