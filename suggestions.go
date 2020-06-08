@@ -2,14 +2,14 @@ package main
 
 import "github.com/c-bata/go-prompt"
 
-type Completer struct {
+type completer struct {
 	NoSuggestion                    []prompt.Suggest
 	NoteSelfDestructSuggestion      []prompt.Suggest
 	DestructAfterOpeningSuggestions []prompt.Suggest
 }
 
-func buildSuggestions() Completer {
-	return Completer{
+func buildSuggestions() completer {
+	return completer{
 		NoSuggestion: []prompt.Suggest{},
 		NoteSelfDestructSuggestion: []prompt.Suggest{
 			{Text: "1h", Description: "In 1 hour your secure note will be deleted"},
@@ -29,14 +29,14 @@ func buildSuggestions() Completer {
 	}
 }
 
-func (c *Completer) noSuggestion(d prompt.Document) []prompt.Suggest {
+func (c *completer) noSuggestion(d prompt.Document) []prompt.Suggest {
 	return c.NoSuggestion
 }
 
-func (c *Completer) selfDestructSuggestions(d prompt.Document) []prompt.Suggest {
+func (c *completer) selfDestructSuggestions(d prompt.Document) []prompt.Suggest {
 	return prompt.FilterContains(c.NoteSelfDestructSuggestion, d.GetWordBeforeCursor(), true)
 }
 
-func (c *Completer) destructAfterOpeningSuggestions(d prompt.Document) []prompt.Suggest {
+func (c *completer) destructAfterOpeningSuggestions(d prompt.Document) []prompt.Suggest {
 	return prompt.FilterHasPrefix(c.DestructAfterOpeningSuggestions, d.GetWordBeforeCursor(), true)
 }
