@@ -1,6 +1,6 @@
 package models
 
-//Note model for http request
+//Note model used in service layer
 type Note struct {
 	Note                 []byte
 	SelfDestruct         int
