@@ -9,11 +9,13 @@ import (
 	"net/http"
 )
 
+//HttpService holds client and url of nCrypt API server
 type HttpService struct {
 	Client *http.Client
 	Url    string
 }
 
+//SendRequest Sends a POST request to API to create a note
 func (h HttpService) SendRequest(payload models.SecureMessageRequest) ([]byte, error) {
 	jsonPayload, err := json.Marshal(payload)
 	if err != nil {
