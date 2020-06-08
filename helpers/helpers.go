@@ -14,6 +14,7 @@ var acceptableSelfDestructValues = map[string]int{
 	"1m":  0,
 }
 
+//ConvertSelfDestructToInt convert user input to API input
 func ConvertSelfDestructToInt(i string) (int, error) {
 	if v, ok := acceptableSelfDestructValues[i]; ok {
 		return v, nil
@@ -21,6 +22,7 @@ func ConvertSelfDestructToInt(i string) (int, error) {
 	return 0, errors.New("invalid input")
 }
 
+//ConvertDestructAfterOpeningToBool convert user input to API input
 func ConvertDestructAfterOpeningToBool(i string) (bool, error) {
 	if i == "yes" {
 		return true, nil
