@@ -5,12 +5,17 @@ import (
 )
 
 func TestGenerateRandomPassword(t *testing.T) {
-	s, err := GenerateRandomString(32)
+	r1, err := GenerateRandomString(32)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if len(s) != 32 {
+	if len(r1) != 32 {
+		t.Fail()
+	}
+
+	r2, err := GenerateRandomString(32)
+	if r1 == r2 {
 		t.Fail()
 	}
 }
