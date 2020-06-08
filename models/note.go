@@ -1,6 +1,7 @@
 package models
 
 //Note model used in service layer
+//todo: I can merge it with SecureMessageRequest
 type Note struct {
 	Note                 []byte
 	SelfDestruct         int
