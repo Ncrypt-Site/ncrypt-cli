@@ -6,6 +6,7 @@ import (
 	"ncrypt-cli/models"
 )
 
+//CreateNote create a note and send to API
 func CreateNote(h HttpService, n models.Note) (models.NoteCreatedResponse, string, error) {
 	encryptedNote, err := createSecureNote(n.Note)
 	if err != nil {
