@@ -2,11 +2,13 @@ package helpers
 
 import (
 	"math/rand"
+	"time"
 )
 
 const CharSets = "123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 func GenerateRandomBytes(n int) ([]byte, error) {
+	rand.Seed(time.Now().UnixNano())
 	b := make([]byte, n)
 	_, err := rand.Read(b)
 	if err != nil {
