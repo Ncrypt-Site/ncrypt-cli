@@ -15,6 +15,10 @@ func createSecureNote(note []byte) (models.EncryptedNote, error) {
 	}
 
 	key, err := helpers.GenerateRandomString(32)
+	if err != nil {
+		return models.EncryptedNote{}, err
+	}
+
 	iv, err := helpers.GenerateRandomString(16)
 	if err != nil {
 		return models.EncryptedNote{}, err
