@@ -5,6 +5,7 @@ import (
 	"crypto/cipher"
 )
 
+//EncryptNote encrypt a note with AES256
 func EncryptNote(note, key, iv []byte) ([]byte, error) {
 	block, err := aes.NewCipher(key)
 	if err != nil {
