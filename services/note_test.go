@@ -10,7 +10,7 @@ import (
 func TestGenerateSHA256(t *testing.T) {
 	message := []byte("Ever have that feeling where you’re not sure if you’re awake or dreaming?")
 
-	shaB64 := CalculateSHA256(message)
+	shaB64 := calculateSHA256(message)
 	sha, err := base64.StdEncoding.DecodeString(shaB64)
 	if err != nil {
 		t.Fatal(err)
