@@ -14,7 +14,7 @@ func TestGenerateRandomPassword(t *testing.T) {
 		t.Fail()
 	}
 
-	r2, err := GenerateRandomString(32)
+	r2, _ := GenerateRandomString(32)
 	if r1 == r2 {
 		t.Fail()
 	}
