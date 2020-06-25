@@ -13,7 +13,7 @@ import (
 func main() {
 	c := buildSuggestions()
 
-	color.FgLightBlue.Println("nCrypt.site CLI V1.0.0-alpha\n")
+	color.FgLightBlue.Println("nCrypt.site CLI V1.0.0\n")
 
 	color.Green.Print("enter your note:")
 	color.Cyan.Println(" (we will secure it for you)")
